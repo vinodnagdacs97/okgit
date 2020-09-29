@@ -50,6 +50,13 @@
                 <type>pom</type>
                 <scope>import</scope>
             </dependency>
+            <!-- https://mvnrepository.com/artifact/com.vaadin/flow-maven-plugin -->
+            <dependency>
+                <groupId>com.vaadin</groupId>
+                <artifactId>flow-maven-plugin</artifactId>
+                <version>4.0.2</version>
+            </dependency>
+
         </dependencies>
     </dependencyManagement>
 
