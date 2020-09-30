@@ -143,6 +143,8 @@
                     <artifactId>flow-server-production-mode</artifactId>
                 </dependency>
             </dependencies>
+        </profile>
+    </profiles>
 
             <build>
                 <plugins>
@@ -222,8 +224,7 @@
                 </plugins>
             </build>
 
-          
-        </profile>
+
 
 
 </project>
