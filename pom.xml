@@ -10,7 +10,7 @@
 
     <properties>
         <maven.compiler.source>13</maven.compiler.source>
-        <maven.compiler.target>13</maven.compiler.target>
+    
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
         <failOnMissingWebXml>false</failOnMissingWebXml>
@@ -146,7 +146,11 @@
     <build>
         <defaultGoal>jetty:run</defaultGoal>
         <plugins>
-        
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>3.8.1</version>
+            </plugin>
             <!-- Jetty plugin for easy testing without a server -->
             <plugin>
                 <groupId>org.eclipse.jetty</groupId>
@@ -280,7 +284,55 @@
                     </plugin>
 
                     <!-- Runs the integration tests (*IT) after the server is started -->
-                  
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-failsafe-plugin</artifactId>
+                        <version>3.0.0-M3</version>
+                        <executions>
+                            <execution>
+                                <goals>
+                                    <goal>integration-test</goal>
+                                    <goal>verify</goal>
+                                </goals>
+                            </execution>
+                        </executions>
+                        <configuration>
+                            <trimStackTrace>false</trimStackTrace>
+                            <enableAssertions>true</enableAssertions>
+                            <systemPropertyVariables>
+                                <!-- Pass location of downloaded webdrivers to the tests -->
+                                <webdriver.chrome.driver>${webdriver.chrome.driver}</webdriver.chrome.driver>
+                            </systemPropertyVariables>
+                        </configuration>
+                    </plugin>
+
+                    <plugin>
+                        <groupId>com.lazerycode.selenium</groupId>
+                        <artifactId>driver-binary-downloader-maven-plugin</artifactId>
+                        <version>1.0.17</version>
+                        <configuration>
+                            <onlyGetDriversForHostOperatingSystem>true
+                            </onlyGetDriversForHostOperatingSystem>
+                            <rootStandaloneServerDirectory>
+                                ${project.basedir}/drivers/driver
+                            </rootStandaloneServerDirectory>
+                            <downloadedZipFileDirectory>
+                                ${project.basedir}/drivers/driver_zips
+                            </downloadedZipFileDirectory>
+                            <customRepositoryMap>
+                                ${project.basedir}/drivers.xml
+                            </customRepositoryMap>
+                        </configuration>
+                        <executions>
+                            <execution>
+                                <!-- use phase "none" to skip download step -->
+                                <phase>${drivers.downloader.phase}</phase>
+                                <goals>
+                                    <goal>selenium</goal>
+                                </goals>
+                            </execution>
+                        </executions>
+                    </plugin>
                 </plugins>
             </build>
         </profile>
