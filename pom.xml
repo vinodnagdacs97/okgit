@@ -142,7 +142,11 @@
     </dependencies>
 
     <build>
+        
+        <plugins>
        
+            <!-- Jetty plugin for easy testing without a server -->
+          
             <!--
                 Take care of synchronizing java dependencies and imports in
                 package.json and main.js files.
