@@ -167,11 +167,6 @@
                             </execution>
                         </executions>
                     </plugin>
-                </plugins>
-            </build>
-
-            <build>
-                <plugins>
                     <plugin>
                         <groupId>com.github.eirslett</groupId>
                         <artifactId>frontend-maven-plugin</artifactId>
@@ -227,7 +222,7 @@
                 </plugins>
             </build>
 
-
+          
         </profile>
 
 
