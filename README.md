@@ -1,22 +1,16 @@
-# Project Base for Vaadin and Spring Boot
+# My Project
 
 This is an example project that can be used as a starting point to create your own Vaadin application with Spring Boot.
 It contains all the necessary configuration and some placeholder files to get you started.
 
+The project is a standard Maven project, so you can import it to your IDE of choice. [Read more how to set up a development environment](https://vaadin.com/docs/v14/flow/installing/installing-overview.html) for Vaadin projects (Windows, Linux, macOS). 
+
+This project was created from https://start.vaadin.com.
 
 ## Running the Application
-There are two ways to run the application :  using `mvn spring-boot:run` or by running the `Application` class directly from your IDE.
-
-You can use any IDE of your preference,but we suggest Eclipse or Intellij IDEA.
-Below are the configuration details to start the project using a `spring-boot:run` command. Both Eclipse and Intellij IDEA are covered.
-
-#### Eclipse
-- Right click on a project folder and select `Run As` --> `Maven build..` . After that a configuration window is opened.
-- In the window set the value of the **Goals** field to `spring-boot:run` 
-- You can optionally select `Skip tests` checkbox
-- All the other settings can be left to default
-
-Once configurations are set clicking `Run` will start the application
+There are two ways to run the application:  
+ - To run from the command line, use `mvn` and open [http://localhost:8080](http://localhost:8080) in your browser.
+ - Another way is to to run the `Application` class directly from your IDE.
 
 #### Intellij IDEA
 - On the right side of the window, select Maven --> Plugins--> `spring-boot` --> `spring-boot:run` goal
@@ -26,47 +20,25 @@ Clicking on the green run button will start the application.
 
 After the application has started, you can view your it at http://localhost:8080/ in your browser.
 
+#### Eclipse
+- Right click on a project folder and select `Run As` --> `Maven build..` . After that a configuration window is opened.
+- In the window set the value of the **Goals** field to `spring-boot:run` 
+- You can optionally select `Skip tests` checkbox
+- All the other settings can be left to default
 
-If you want to run the application locally in the production mode, use `spring-boot:run -Pproduction` command instead.
-### Running Integration Tests
-
-Integration tests are implemented using [Vaadin TestBench](https://vaadin.com/testbench). The tests take a few minutes to run and are therefore included in a separate Maven profile. We recommend running tests with a production build to minimize the chance of development time toolchains affecting test stability. To run the tests using Google Chrome, execute
-
-`mvn verify -Pit,production`
-
-and make sure you have a valid TestBench license installed.
-
-Profile `it` adds the following parameters to run integration tests:
-```sh
--Dwebdriver.chrome.driver=path_to_driver
--Dcom.vaadin.testbench.Parameters.runLocally=chrome
-```
-
-If you would like to run a separate test make sure you have added these parameters to VM Options of JUnit run configuration
-
-## Project overview
-
-Project follow the Maven's [standard directory layout structure](https://maven.apache.org/guides/introduction/introduction-to-the-standard-directory-layout.html):
-- Under the `srs/main/java` are located Application sources
-   - `Application.java` is a runnable Java application class and a starting point
-   - `GreetService.java` is a  Spring service class
-   - `MainView.java` is a default view and entry point of the application
-- Under the `srs/test` are located test files
-- `src/main/resources` contains configuration files and static resources
-- The `frontend` directory in the root folder contains client-side dependencies and resource files
-   - All CSS styles used by the application are located under the root directory `frontend/styles`    
-   - Templates would be stored under the `frontend/src`
+Once configurations are set clicking `Run` will start the application
 
 
-## More Information and Next Steps
+## Project structure
 
-- Vaadin Basics [https://vaadin.com/docs](https://vaadin.com/docs)
-- More components at [https://vaadin.com/components](https://vaadin.com/components) and [https://vaadin.com/directory](https://vaadin.com/directory)
-- Download this and other examples at [https://vaadin.com/start](https://vaadin.com/start)
-- Using Vaadin and Spring [https://vaadin.com/docs/v14/flow/spring/tutorial-spring-basic.html](https://vaadin.com/docs/v14/flow/spring/tutorial-spring-basic.html) article
-- Join discussion and ask a question at [https://vaadin.com/forum](https://vaadin.com/forum)
+- `MainView.java` in `src/main/java` contains the navigation setup. It uses [App Layout](https://vaadin.com/components/vaadin-app-layout).
+- `views` package in `src/main/java` contains the server-side Java views of your application.
+- `views` folder in `frontend/src/` contains the client-side JavaScript views of your application.
 
+## What next?
 
-## Notes
+[vaadin.com](https://vaadin.com) has lots of material to help you get you started:
 
-If you run application from a command line, remember to prepend a `mvn` to the command.
+- Follow the tutorials in [vaadin.com/tutorials](https://vaadin.com/tutorials). Especially [vaadin.com/tutorials/getting-started-with-flow](https://vaadin.com/tutorials/getting-started-with-flow) is good for getting a grasp of the basic Vaadin concepts.
+- Read the documentation in [vaadin.com/docs](https://vaadin.com/docs).
+- For a bigger Vaadin application example, check out the Full Stack App starter from [vaadin.com/start](https://vaadin.com/start).
